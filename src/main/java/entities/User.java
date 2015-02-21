@@ -13,7 +13,10 @@ public class User {
     @Column(name="name", unique = true, nullable = false)
     private String name;
 
-    public User() {}
+    public User(){
+        
+        
+    }
 
     public User(int id, String name) {
         this.id = id;
