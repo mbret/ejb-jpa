@@ -1,7 +1,7 @@
-package dao;
+package ejbpersistance.dao;
 
 
-import entities.User;
+import ejbpersistance.entities.User;
 
 /**
  * Created by Maxime on 12/30/2014.

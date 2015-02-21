@@ -1,4 +1,4 @@
-package dao;
+package ejbpersistance.dao;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
