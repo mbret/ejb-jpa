@@ -5,14 +5,14 @@ import javax.persistence.*;
 @Entity(name = "comment")
 @Table(name = "comments")
 public class Comment {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name="content", unique = true, nullable = false)
     private String content;
-    
+
     @ManyToOne
     private Article article;
 

@@ -1,3 +1,4 @@
+
 package ejbpersistance.entities;
 
 import javax.persistence.*;
@@ -47,3 +48,4 @@ public class Article {
         this.content = content;
     }
 }
+
