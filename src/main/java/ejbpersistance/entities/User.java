@@ -4,7 +4,7 @@ package ejbpersistance.entities;
 import javax.persistence.*;
 
 @Entity(name = "user")
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     @Id

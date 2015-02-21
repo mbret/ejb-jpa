@@ -1,10 +1,22 @@
 package ejbpersistance.dao;
 
+import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 public class DaoAbstract<C,I extends Serializable> {
+
+    private EntityManagerFactory emf;
+
+    public EntityManagerFactory getEntityManagerFactory() {
+        if(emf == null)
+            emf = Persistence.createEntityManagerFactory("ejb-jpa");
+        return emf;
+    }
 
     Class<C> entityClass;
 
@@ -13,20 +25,46 @@ public class DaoAbstract<C,I extends Serializable> {
     }
 
     public List<C> getAll() {
-        throw new UnsupportedOperationException();
+        emf = getEntityManagerFactory();
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        List<C> object = em.createQuery("SELECT obj FROM " + entityClass.getAnnotation(Entity.class).name() + " obj")
+                .getResultList();
+        em.flush();
+        em.getTransaction().commit();
+        em.close();
+        return object;
     }
 
     public C get(I id) {
-        throw new UnsupportedOperationException();
+        emf = getEntityManagerFactory();
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        C object = em.find(entityClass, id);
+        em.flush();
+        em.getTransaction().commit();
+        em.close();
+        return object;
     }
 
-    public void save(C object) {
-        throw new UnsupportedOperationException();
+    public C save(C object) {
+        emf = getEntityManagerFactory();
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.persist(object);
+        em.flush();
+        em.getTransaction().commit();
+        em.close();
+        return object;
     }
 
-    public void delete(I id) {
-        throw new UnsupportedOperationException();
+    public void delete(C object) {
+        emf = getEntityManagerFactory();
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.remove(em.contains(object) ? object : em.merge(object));
+        em.flush();
+        em.getTransaction().commit();
+        em.close();
     }
-
-
 }
