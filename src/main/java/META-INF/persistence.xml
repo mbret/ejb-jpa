@@ -2,7 +2,10 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
 
     <persistence-unit name="ejb-jpa">
-        <class>entities.User</class>
+        <!--<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>-->
+        <class>ejbpersistance.entities.User</class>
+        <class>ejbpersistance.entities.Comment</class>
+        <class>ejbpersistance.entities.Article</class>
         <properties>
             <property  name="javax.persistence.jdbc.url"  value="jdbc:mysql://localhost:3306/ejb"/>
             <property  name="javax.persistence.jdbc.user"  value="root"/>
@@ -10,5 +13,4 @@
             <property  name="javax.persistence.jdbc.driver"  value="com.mysql.jdbc.Driver"/>
         </properties>
     </persistence-unit>
-    
 </persistence>

@@ -1,4 +1,4 @@
-package entities;
+package ejbpersistance.entities;
 
 import javax.persistence.*;
 

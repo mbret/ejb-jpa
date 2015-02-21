@@ -1,9 +1,9 @@
-package entities;
+package ejbpersistance.entities;
 
 import javax.persistence.*;
 
 @Entity(name = "user")
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     @Id
@@ -17,11 +17,6 @@ public class User {
     private String password;
 
     public User() {}
-
-    public User(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
 
     public int getId() {
         return id;

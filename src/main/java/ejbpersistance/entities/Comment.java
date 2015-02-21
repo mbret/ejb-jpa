@@ -1,9 +1,9 @@
-package entities;
+package ejbpersistance.entities;
 
 import javax.persistence.*;
 
 @Entity(name = "comment")
-@Table(name = "comment")
+@Table(name = "comments")
 public class Comment {
     
     @Id
@@ -13,14 +13,18 @@ public class Comment {
     @Column(name="content", unique = true, nullable = false)
     private String content;
     
-    @OneToOne
+    @ManyToOne
     private Article article;
+
+    @ManyToOne
+    private User user;
 
     public Comment() {}
 
-    public Comment(String content, Article article) {
+    public Comment(String content, Article article, User user) {
         this.content = content;
         this.article = article;
+        this.user = user;
     }
 
     public int getId() {
@@ -45,5 +49,13 @@ public class Comment {
 
     public void setArticle(Article article) {
         this.article = article;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
