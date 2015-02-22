@@ -21,8 +21,7 @@ public class User {
     private Boolean subscriber;
     
     public User(){
-        
-        
+
     }
 
     public User(String email, String password) {
