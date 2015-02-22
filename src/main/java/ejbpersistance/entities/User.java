@@ -56,4 +56,6 @@ public class User {
     public Boolean getSubscriber() {
         return subscriber;
     }
+    
+    
 }
