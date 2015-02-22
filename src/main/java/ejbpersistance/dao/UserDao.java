@@ -39,16 +39,24 @@ public class UserDao extends DaoAbstract<User, Integer>{
         return u;
     }
 
-	public User emailExist(String email) throws Exception {
+	public boolean emailExist(String email) {
         emf = getEntityManagerFactory();
         EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        User u = (User) em.createNamedQuery("emailExist")
-        	    .setParameter("mail", email)
-        	    .getSingleResult();
-        em.flush();
-        em.getTransaction().commit();
-        em.close();
-        return u;
+//        em.getTransaction().begin();
+        try{
+            em.createNamedQuery("emailExist")
+                    .setParameter("mail", email)
+                    .getSingleResult();
+//            em.getTransaction().commit();
+            return true;
+        }
+        catch(NoResultException e){
+            return false;
+        }
+        finally {
+            em.flush();
+//            em.getTransaction().rollback();
+            em.close();
+        }
 	}
 }
