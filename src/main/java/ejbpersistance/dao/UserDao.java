@@ -25,17 +25,25 @@ import ejbpersistance.entities.User;
 
 public class UserDao extends DaoAbstract<User, Integer>{
 
-	public User findOne(String email, String password) throws Exception{
+	public User findOne(String email, String password){
         emf = getEntityManagerFactory();
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        User u = (User) em.createNamedQuery("findOneUser")
-        	    .setParameter("mail", email)
-        	    .setParameter("password", password)
-        	    .getSingleResult();
-        em.flush();
-        em.getTransaction().commit();
-        em.close();
+        User u = null;
+        try{
+	        u = (User) em.createNamedQuery("findOneUser")
+	        	    .setParameter("mail", email)
+	        	    .setParameter("password", password)
+	        	    .getSingleResult();
+        }
+        catch(NoResultException e){
+            u =  null;
+        }
+        finally {
+            em.flush();
+            em.getTransaction().commit();
+            em.close();
+        }
         return u;
     }
 
@@ -43,20 +51,22 @@ public class UserDao extends DaoAbstract<User, Integer>{
         emf = getEntityManagerFactory();
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        boolean exist = true;
+        boolean b;
         try{
             em.createNamedQuery("emailExist")
                     .setParameter("mail", email)
                     .getSingleResult();
+//            em.getTransaction().commit();
+            b = true;
         }
         catch(NoResultException e){
-            exist = false;
+            b = false;
         }
         finally {
             em.flush();
             em.getTransaction().commit();
             em.close();
-            return exist;
         }
+        return b;
 	}
 }
