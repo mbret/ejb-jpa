@@ -2,6 +2,7 @@
 package ejbpersistance.entities;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Entity(name = "article")
 @Table(name = "article")
@@ -11,12 +12,15 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name="title", unique = true, nullable = false)
+    @Column(name = "title", unique = true, nullable = false)
     private String title;
 
-    @Column(name="content", unique = true, nullable = false)
+    @Column(name = "content", unique = true, nullable = false)
     private String content;
 
+    @Column(name = "date")
+    private Timestamp date;
+    
     public Article() {}
 
     public Article(String title, String content) {
@@ -46,6 +50,14 @@ public class Article {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Timestamp getDate() {
+        return date;
+    }
+
+    public void setDate(Timestamp date) {
+        this.date = date;
     }
 }
 

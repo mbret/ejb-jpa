@@ -1,6 +1,7 @@
 package ejbpersistance.entities;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Entity(name = "comment")
 @Table(name = "comments")
@@ -19,6 +20,9 @@ public class Comment {
     @ManyToOne
     private User user;
 
+    @Column(name = "date")
+    private Timestamp date;
+    
     public Comment() {}
 
     public Comment(String content, Article article, User user) {
@@ -57,5 +61,13 @@ public class Comment {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Timestamp getDate() {
+        return date;
+    }
+
+    public void setDate(Timestamp date) {
+        this.date = date;
     }
 }
