@@ -42,21 +42,21 @@ public class UserDao extends DaoAbstract<User, Integer>{
 	public boolean emailExist(String email) {
         emf = getEntityManagerFactory();
         EntityManager em = emf.createEntityManager();
-//        em.getTransaction().begin();
+        em.getTransaction().begin();
+        boolean exist = true;
         try{
             em.createNamedQuery("emailExist")
                     .setParameter("mail", email)
                     .getSingleResult();
-//            em.getTransaction().commit();
-            return true;
         }
         catch(NoResultException e){
-            return false;
+            exist = false;
         }
         finally {
             em.flush();
-//            em.getTransaction().rollback();
+            em.getTransaction().commit();
             em.close();
+            return exist;
         }
 	}
 }
