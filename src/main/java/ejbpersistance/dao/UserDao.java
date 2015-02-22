@@ -9,4 +9,8 @@ import ejbpersistance.entities.User;
 public class UserDao extends DaoAbstract<User, Integer>{
 
 
+    public User findOne(String email, String password){
+        
+        throw new UnsupportedOperationException();
+    }
 }
