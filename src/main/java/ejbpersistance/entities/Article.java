@@ -20,12 +20,16 @@ public class Article {
 
     @Column(name = "date")
     private Timestamp date;
+
+    @ManyToOne
+    private User user;
     
     public Article() {}
 
-    public Article(String title, String content) {
+    public Article(String title, String content, User user) {
         this.title = title;
         this.content = content;
+        this.user = user;
     }
 
     public int getId() {
@@ -58,6 +62,14 @@ public class Article {
 
     public void setDate(Timestamp date) {
         this.date = date;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
 
