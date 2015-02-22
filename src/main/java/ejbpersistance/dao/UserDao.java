@@ -28,7 +28,7 @@ public class UserDao extends DaoAbstract<User, Integer>{
 	public User findOne(String email, String password){
         emf = getEntityManagerFactory();
         EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
+//        em.getTransaction().begin();
         User u = null;
         try{
 	        u = (User) em.createNamedQuery("findOneUser")
@@ -40,8 +40,8 @@ public class UserDao extends DaoAbstract<User, Integer>{
             u =  null;
         }
         finally {
-            em.flush();
-            em.getTransaction().commit();
+//            em.flush();
+//            em.getTransaction().commit();
             em.close();
         }
         return u;
@@ -50,10 +50,10 @@ public class UserDao extends DaoAbstract<User, Integer>{
 	public boolean emailExist(String email) {
         emf = getEntityManagerFactory();
         EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
+//        em.getTransaction().begin();
         boolean b;
         try{
-            em.createNamedQuery("emailExist")
+            em.createQuery("SELECT c FROM user c WHERE c.email LIKE :mail")
                     .setParameter("mail", email)
                     .getSingleResult();
 //            em.getTransaction().commit();
@@ -63,8 +63,8 @@ public class UserDao extends DaoAbstract<User, Integer>{
             b = false;
         }
         finally {
-            em.flush();
-            em.getTransaction().commit();
+//            em.flush();
+//            em.getTransaction().commit();
             em.close();
         }
         return b;

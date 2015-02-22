@@ -22,19 +22,24 @@ public class Main {
         ArticleDao articledao = new ArticleDao();
         UserDao userdao = new UserDao();
         
-        User user = userdao.get(6);
-        Article article = articledao.get(7);
+        User user = new User("email@gmail.com", "password");
+        user.setSubscriber(false);
+        userdao.save(user);
+        articledao.save(new Article("title", "content", user));
         
-        Comment com = new Comment();
-        com.setContent("content2");
-        com.setArticle(article);
-        com.setUser(user);
-
-        article = articledao.save(article);
+//        User user = userdao.get(6);
+//        Article article = articledao.get(7);
         
+//        Comment com = new Comment();
+//        com.setContent("content2");
+//        com.setArticle(article);
+//        com.setUser(user);
 
-        CommentDao comdao = new CommentDao();
-        com = comdao.get(1);
-        comdao.delete(com);
+//        article = articledao.save(article);
+        
+        userdao.emailExist("user@mail.com");
+//        CommentDao comdao = new CommentDao();
+//        com = comdao.get(1);
+//        comdao.delete(com);
     }
 }
