@@ -22,10 +22,11 @@ public class Main {
         ArticleDao articledao = new ArticleDao();
         UserDao userdao = new UserDao();
         
+        userdao.findOne("user@gmail.com", "fdhg");
         User user = new User("email@gmail.com", "password");
         user.setSubscriber(false);
         userdao.save(user);
-        articledao.save(new Article("title", "content", user));
+//        articledao.save(new Article("title", "content", user));
         
 //        User user = userdao.get(6);
 //        Article article = articledao.get(7);
