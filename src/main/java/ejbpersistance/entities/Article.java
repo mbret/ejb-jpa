@@ -3,11 +3,12 @@ package ejbpersistance.entities;
 
 import javax.persistence.*;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Entity(name = "article")
 @Table(name = "article")
-public class Article {
+public class Article implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
