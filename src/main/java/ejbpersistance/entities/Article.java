@@ -2,6 +2,7 @@
 package ejbpersistance.entities;
 
 import javax.persistence.*;
+
 import java.sql.Timestamp;
 
 @Entity(name = "article")
@@ -20,6 +21,9 @@ public class Article {
 
     @Column(name = "date")
     private Timestamp date;
+    
+    @ManyToOne
+    private User auteur;
     
     public Article() {}
 
@@ -59,5 +63,13 @@ public class Article {
     public void setDate(Timestamp date) {
         this.date = date;
     }
+
+	public User getAuteur() {
+		return auteur;
+	}
+	
+	public void setAuteur (User u ){
+		this.auteur = u;
+	}
 }
 
