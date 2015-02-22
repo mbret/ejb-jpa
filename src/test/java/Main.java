@@ -16,6 +16,8 @@ public class Main {
         article.setId(7);
         article.setTitle("title");
         article.setContent("content");*/
+    	
+    	
 
         ArticleDao articledao = new ArticleDao();
         UserDao userdao = new UserDao();
@@ -28,11 +30,8 @@ public class Main {
         com.setArticle(article);
         com.setUser(user);
 
-        /*ArticleDao articledao = new ArticleDao();
         article = articledao.save(article);
         
-        UserDao userdao = new UserDao();
-        user = userdao.save(user);*/
 
         CommentDao comdao = new CommentDao();
         com = comdao.get(1);

@@ -56,6 +56,9 @@ public class User {
     public Boolean getSubscriber() {
         return subscriber;
     }
-    
-    
+
+    public void setSubscriber(boolean s) {
+        this.subscriber=s;
+    }
+
 }
