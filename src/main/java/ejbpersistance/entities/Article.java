@@ -2,6 +2,7 @@
 package ejbpersistance.entities;
 
 import javax.persistence.*;
+
 import java.sql.Timestamp;
 
 @Entity(name = "article")
@@ -71,5 +72,6 @@ public class Article {
     public void setUser(User user) {
         this.user = user;
     }
+
 }
 

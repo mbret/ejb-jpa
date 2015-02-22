@@ -10,7 +10,7 @@ import java.util.List;
 
 public class DaoAbstract<C,I extends Serializable> {
 
-    private EntityManagerFactory emf;
+    protected EntityManagerFactory emf;
 
     public EntityManagerFactory getEntityManagerFactory() {
         if(emf == null)
