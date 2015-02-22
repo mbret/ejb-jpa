@@ -22,7 +22,7 @@ public class Comment implements Serializable{
     @ManyToOne
     private User user;
 
-    @Column(name = "date")
+    @Column(name = "date", updatable = false, insertable = false)
     private Timestamp date;
     
     public Comment() {}

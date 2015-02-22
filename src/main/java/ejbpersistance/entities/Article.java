@@ -20,7 +20,7 @@ public class Article implements Serializable{
     @Column(name = "content", unique = true, nullable = false)
     private String content;
 
-    @Column(name = "date")
+    @Column(name = "date", updatable = false, insertable = false)
     private Timestamp date;
 
     @ManyToOne
