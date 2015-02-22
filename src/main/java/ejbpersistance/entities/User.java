@@ -1,11 +1,13 @@
 
 package ejbpersistance.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 @Entity(name = "user")
 @Table(name = "users")
-public class User {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
