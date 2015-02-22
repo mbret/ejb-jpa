@@ -54,4 +54,23 @@ public class UserDao extends DaoAbstract<User, Integer>{
         else
         	return true;
 	}
+	
+	public User updateUser(int userId, String mail, String pwd, boolean sub){
+		emf = getEntityManagerFactory();
+        EntityManager em = emf.createEntityManager();
+        User u =em.find(User.class, userId);
+        em.getTransaction().begin();
+        if (!u.getEmail().equals(mail)) {
+        	u.setEmail(mail);	
+		}
+        if (!u.getPassword().equals(pwd)) {
+        	u.setPassword(pwd);
+		}
+        if (!u.getSubscriber().equals(sub)) {
+        	u.setSubscriber(sub);;
+		}
+        em.getTransaction().commit();
+		
+		return u;
+	}
 }
